@@ -168,8 +168,13 @@ class Information(object):
         output = ''
 
         # Get the parent's info
+        user_info = FamilyTreeMember.get(user.id)
+        if len(user.info.parent) == 0:
+            output += f"Well you would need a parent first..."
+            return
+
         user_info.parent = FamilyTreeMember.get(user.id)
-        if len(user_info.parent.children) == 0:
+        if len(user_info.parent.children) == 1:
             output += f"`{user!s}` has no siblings right now from their parent's side."
         else:
             output += f"`{user!s}` has `{len(user_info.parent.children)}` sibling(s) from their parent's side" + \
@@ -182,7 +187,7 @@ class Information(object):
             return
         user_info = user_info.parent.partner
         user = self.bot.get_user(user_info.id)
-        if len(user_info.parent.partner.children) == 0:
+        if len(user_info.parent.partner.children) == 1:
             output += f"\n `{user!s}` has no siblings from their parent's partner's side"
         else:
             output += f"\n `{user!s}` has `{len(user_info.parent.partner.children)}` siblings from their parent's partner's side" + \
