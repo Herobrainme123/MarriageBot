@@ -48,7 +48,7 @@ class Simulation(object):
                 f"*Feeds {user.mention} some candy.*",
                 f"{user.mention} has been fed.",
                 f"You feed {user.mention}.",
-                f"*Feeds {user.mention} some chicken.",
+                f"*Feeds {user.mention} some chicken.*",
                 f"You feed {user.mention} too much.",
             ]
         await ctx.send(choice(responses))
